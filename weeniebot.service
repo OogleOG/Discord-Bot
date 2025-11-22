@@ -1,0 +1,26 @@
+[Unit]
+Description=WeenieHut Discord Bot
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=discord
+WorkingDirectory=/home/discord/WeenieHutDiscordBot
+Environment="PATH=/home/discord/venv/bin"
+ExecStart=/home/discord/venv/bin/python3 /home/discord/WeenieHutDiscordBot/main.py
+
+# Auto restart on failure
+Restart=always
+RestartSec=5
+
+# Kill process on stop
+KillMode=process
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=weeniebot
+
+[Install]
+WantedBy=multi-user.target
